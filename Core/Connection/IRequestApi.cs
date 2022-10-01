@@ -10,8 +10,8 @@ namespace RiotNet.Core.API.Intefaces
 {
     public interface IRequestApi
     {
-        Task<HttpResponseMessage> MakeRequest(string apiKey, string url);
+        Task<HttpResponseMessage> MakeRequest(string url);
         Task<JObject> GetResponseContent(HttpResponseMessage response);
-        string CreateApiUrl(Platforms platform, string endpoint, string? version = null, string game = "lol");
+        string CreateApiUrl(string endpoint, string? version = null, string game = "lol");
     }
 }

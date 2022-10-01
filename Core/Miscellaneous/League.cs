@@ -6,6 +6,23 @@ using System.Threading.Tasks;
 
 namespace RiotNet.Core.Miscellaneous
 {
+	public enum Levels
+	{
+		NONE,
+		IRON,
+		BRONZE,
+		SILVER,
+		GOLD,
+		PLATINUM,
+		DIAMON,
+		MASTER,
+		GRANDMASTER,
+		CHALLENGER,
+		HIGHEST_NOT_LEADERBOARD_ONLY,
+		HIGHEST,
+		LOWEST
+	}
+
 	public enum AdvancedQueues
 	{
 		masterleagues,

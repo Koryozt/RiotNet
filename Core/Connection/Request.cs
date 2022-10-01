@@ -9,14 +9,20 @@ using System.Text;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 
-namespace RiotNet.Core.API
+namespace RiotNet.Core.Connection
 {
     public class Request : IRequestApi
     {
-        public async Task<HttpResponseMessage> MakeRequest(string apiKey, string url)
+        private readonly string _apiKey = Startup.apikey;
+        private readonly Platforms _platform = Startup.platform;
+        private readonly Region _region = Startup.region;
+
+        public async Task<HttpResponseMessage> MakeRequest(string url)
         {
-            Configuration.client.DefaultRequestHeaders.Add("X-Riot-Token", apiKey);
+            Configuration.client.DefaultRequestHeaders.Add("X-Riot-Token", _apiKey);
             Configuration.client.DefaultRequestHeaders.Add("Origin", "https://developer.riotgames.com");
+
+            Console.WriteLine($"Executing request to: {url}");
 
             HttpResponseMessage response = await Configuration.client.GetAsync(url);
 
@@ -32,14 +38,29 @@ namespace RiotNet.Core.API
             return json;
         }
 
-        public string CreateApiUrl(Platforms platform, string endpoint, string? version = null, string game = "lol")
+        public string CreateApiUrl(string endpoint, string? version = null, string game = "lol")
         {
             try
             {
-                string url = Configuration.s_baseUrl.Insert(8, platform.ToString());
-                url += $"{game}/{endpoint}/{version}/";
+                string url = string.Empty;
+                
+                if (game != "lol")
+                {
+                    #nullable disable
+                    string strRegion = Convert.ToString(_region).ToLower();
 
-                return url;
+                    url = Configuration.s_baseUrl.Insert(8, strRegion);
+                }
+                
+                string strPlatform = Convert.ToString(_platform);
+
+
+				url = Configuration.s_baseUrl.Insert(8, strPlatform);
+                url += $"{game}/{endpoint}/{version}/";
+                
+                #nullable enable
+
+				return url;
             }
             catch (ArgumentNullException)
             {

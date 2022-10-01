@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RiotNet.Core
+namespace RiotNet.Core.Miscellaneous
 {
-	public class RiotNet
+	public enum Region
 	{
+		AMERICAS,
+		APAC,
+		EUROPE,
+		SEA
 	}
 }
