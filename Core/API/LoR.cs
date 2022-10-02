@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
-using RiotNet.Core.API.GamesAPI.Interfaces;
+using RiotNet.Core.API.Interfaces;
 using RiotNet.Core.API.Legends_of_Runaterra;
 using RiotNet.Core.API.Legends_of_Runaterra.Interfaces;
 using System;
@@ -10,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace RiotNet.Core.API
 {
-	public class LoR : IMatch, IRanked, IStatus
-	{
+    public class LoR : IMatch, IRanked
+	{ 
 		private readonly IMatch _match;
 		private readonly IRanked _ranked;
 		private readonly IStatus _status;
@@ -36,11 +36,6 @@ namespace RiotNet.Core.API
 		public Task<JObject> Leaderboard()
 		{
 			return _ranked.Leaderboard();
-		}
-
-		public Task<JObject> Status()
-		{
-			return _status.Status();
 		}
 	}
 }

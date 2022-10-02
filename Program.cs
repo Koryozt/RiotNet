@@ -15,7 +15,7 @@ namespace RiotNet
 	{
 		public static async Task Main(string[] args)
 		{
-            Startup create = new ("API KEY", Platforms.la1, Region.AMERICAS);
+            RiotNetAPI create = new ("RGAPI-abc97b0e-6e5b-4f8e-89cd-6b22528f6e3a", Platforms.la1, Region.AMERICAS);
 			LoL league = new LoL();
 
 			JObject response = await league.GetSummonerByAccountName("kayle carupanera");

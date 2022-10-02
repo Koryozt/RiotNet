@@ -13,9 +13,9 @@ namespace RiotNet.Core.Connection
 {
     public class Request : IRequestApi
     {
-        private readonly string _apiKey = Startup.apikey;
-        private readonly Platforms _platform = Startup.platform;
-        private readonly Region _region = Startup.region;
+        private readonly string _apiKey = RiotNetAPI.apikey;
+        private readonly Platforms _platform = RiotNetAPI.platform;
+        private readonly Region _region = RiotNetAPI.region;
 
         public async Task<HttpResponseMessage> MakeRequest(string url)
         {
@@ -44,7 +44,7 @@ namespace RiotNet.Core.Connection
             {
                 string url = string.Empty;
                 
-                if (game != "lol")
+                if (game == "lor")
                 {
                     #nullable disable
                     string strRegion = Convert.ToString(_region).ToLower();
@@ -53,7 +53,6 @@ namespace RiotNet.Core.Connection
                 }
                 
                 string strPlatform = Convert.ToString(_platform);
-
 
 				url = Configuration.s_baseUrl.Insert(8, strPlatform);
                 url += $"{game}/{endpoint}/{version}/";

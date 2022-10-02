@@ -13,13 +13,12 @@ using System.Threading.Tasks;
 
 namespace RiotNet.Core.API.GamesAPI
 {
-    public class LoL : IChampionMastery, IClash, IStatus, ILeague, IRotations, IChallenges, ISpectator, IMatch, ISummoner
+    public class LoL : IChampionMastery, IClash, ILeague, IRotations, IChallenges, ISpectator, IMatch, ISummoner
     {
         private readonly IChampionMastery _championMastery;
         private readonly IClash _clash;
         private readonly ILeague _league;
         private readonly IRotations _rotations;
-        private readonly IStatus _status;
         private readonly IChallenges _challenges;
         private readonly ISpectator _spectator;
         private readonly IMatch _match;
@@ -31,7 +30,6 @@ namespace RiotNet.Core.API.GamesAPI
             _clash = new Clash();
             _league = new League();
             _rotations = new Rotations();
-            _status = new StatusLoL();
             _challenges = new Challenges();
             _spectator = new Spectator();
             _match = new Match();
@@ -171,11 +169,6 @@ namespace RiotNet.Core.API.GamesAPI
         public Task<JObject> Leagues(string leagueId)
         {
             return _league.Leagues(leagueId);
-        }
-
-        public Task<JObject> Status()
-        {
-            return _status.Status();
         }
 
         public Task<JObject> Queue(AdvancedQueues league, Queue queue)
