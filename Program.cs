@@ -1,25 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-using RiotNet.Core.API.GamesAPI;
-using RiotNet.Core.API.GamesAPI.Interfaces; 
-using RiotNet.Core.Connection;
-using RiotNet.Core.Miscellaneous;
+﻿using Newtonsoft.Json.Linq;
+using RiotNet.Miscellaneous;
 
 namespace RiotNet
 {
-	class Program
-	{
-		public static async Task Main(string[] args)
-		{
-            RiotNetAPI create = new ("YOUR API KEY", Platforms.la1, Region.AMERICAS);
-			LoL league = new LoL();
+    class Program
+    {
+        public static async Task Main(string[] args)
+        {
+            RiotNetAPI API = new ("YOUR API KEY", LeaguePlatforms.LA1, RunaterraPlatforms.AMERICAS, ValorantPlatforms.LATAM, RiotPlatforms.AMERICAS);
 
-			JObject response = await league.GetSummonerByAccountName("kayle carupanera");
-			Console.WriteLine(response);
-		}
-	}
+            JObject queues = await API.LeagueOfLegends.Queue(AdvancedQueues.challengerleagues, Queue.RANKED_SOLO_5x5);
+            Console.WriteLine(queues);
+        }
+    }
 }
