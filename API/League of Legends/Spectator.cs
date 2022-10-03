@@ -8,24 +8,18 @@ namespace RiotNet.API.LeagueOfLegends
 	{
 		private readonly IRequestApi _request = new Request();
 
-		public async Task<JObject> FeaturedGames()
+		public async Task<JObject> GetFeaturedGames()
 		{
-			string baseUrl = _request.CreateApiUrl("spectator", "v4"),
-			methodEndpoint = $"featured-games",
-			url = baseUrl + methodEndpoint;
-
-			HttpResponseMessage response = await _request.MakeRequest(url);
+			string baseUrl = _request.CreateApiUrl("spectator", "v4", "lol", "featured-games");
+			HttpResponseMessage response = await _request.MakeRequest(baseUrl);
 
 			return await _request.GetResponseContent(response);
 		}
 
-		public async Task<JObject> SummonerActiveGame(string encryptedSummonerId)
+		public async Task<JObject> GetSummonerActiveGame(string encryptedSummonerId)
 		{
-			string baseUrl = _request.CreateApiUrl("spectator", "v4"),
-			methodEndpoint = $"active-games/by-summoner/{encryptedSummonerId}",
-			url = baseUrl + methodEndpoint;
-
-			HttpResponseMessage response = await _request.MakeRequest(url);
+			string baseUrl = _request.CreateApiUrl("spectator", "v4", "lol", "active-games", "by-summoner", encryptedSummonerId);
+			HttpResponseMessage response = await _request.MakeRequest(baseUrl);
 
 			return await _request.GetResponseContent(response);
 		}

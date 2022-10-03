@@ -4,6 +4,6 @@ namespace RiotNet.API.LeagueOfLegends.Interfaces
 {
 	public interface IRotations
 	{
-		Task<JObject> ChampionsRotations();
+		Task<JObject> GetChampionsRotations();
 	}
 }

@@ -8,14 +8,10 @@ namespace RiotNet.API.LeagueOfLegends
 	{
 		private readonly IRequestApi _request = new Request();
 
-		public async Task<JObject> ChampionsRotations()
+		public async Task<JObject> GetChampionsRotations()
 		{
-			string baseUrl = _request.CreateApiUrl("platform", "v3"),
-			rotationUrl = "champion-rotations";
-
-			string url = $"{baseUrl}{rotationUrl}";
-
-			HttpResponseMessage response = await _request.MakeRequest(url);
+			string baseUrl = _request.CreateApiUrl("platform", "v3", "lol", "champion-rotations");
+			HttpResponseMessage response = await _request.MakeRequest(baseUrl);
 
 			return await _request.GetResponseContent(response);
 		}

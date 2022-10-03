@@ -10,44 +10,32 @@ namespace RiotNet.API.LeagueOfLegends
 
 		public async Task<JObject> GetSummonerByAccountID(string encryptedAccountId)
 		{
-			string baseUrl = _request.CreateApiUrl("summoner", "v4"),
-			methodEndpoint = $"summoners/by-account/{encryptedAccountId}",
-			url = baseUrl + methodEndpoint;
-
-			HttpResponseMessage response = await _request.MakeRequest(url);
+			string baseUrl = _request.CreateApiUrl("summoner", "v4", "lol", "summoners", "by-account", encryptedAccountId);
+			HttpResponseMessage response = await _request.MakeRequest(baseUrl);
 
 			return await _request.GetResponseContent(response);
 		}
 
 		public async Task<JObject> GetSummonerByAccountName(string summonerName)
 		{
-			string baseUrl = _request.CreateApiUrl("summoner", "v4"),
-			methodEndpoint = $"summoners/by-name/{summonerName}",
-			url = baseUrl + methodEndpoint;
-
-			HttpResponseMessage response = await _request.MakeRequest(url);
+			string baseUrl = _request.CreateApiUrl("summoner", "v4", "lol", "summoners", "by-name", summonerName);
+			HttpResponseMessage response = await _request.MakeRequest(baseUrl);
 
 			return await _request.GetResponseContent(response);
 		}
 
 		public async Task<JObject> GetSummonerByPUUID(string puuid)
 		{
-			string baseUrl = _request.CreateApiUrl("summoner", "v4"),
-			methodEndpoint = $"summoners/by-puuid/{puuid}",
-			url = baseUrl + methodEndpoint;
-
-			HttpResponseMessage response = await _request.MakeRequest(url);
+			string baseUrl = _request.CreateApiUrl("summoner", "v4", "lol", "summoners", "by-puuod", puuid);
+			HttpResponseMessage response = await _request.MakeRequest(baseUrl);
 
 			return await _request.GetResponseContent(response);
 		}
 
 		public async Task<JObject> GetSummonerBySummonerID(string summonerID)
 		{
-			string baseUrl = _request.CreateApiUrl("summoner", "v4"),
-			methodEndpoint = $"summoners/{summonerID}",
-			url = baseUrl + methodEndpoint;
-
-			HttpResponseMessage response = await _request.MakeRequest(url);
+			string baseUrl = _request.CreateApiUrl("summoner", "v4", "lol", "summoners", summonerID);
+			HttpResponseMessage response = await _request.MakeRequest(baseUrl);
 
 			return await _request.GetResponseContent(response);
 		}

@@ -4,7 +4,7 @@ namespace RiotNet.API.LeagueOfLegends.Interfaces
 {
 	public interface ISpectator
 	{
-		Task<JObject> SummonerActiveGame(string encryptedSummonerId);
-		Task<JObject> FeaturedGames();
+		Task<JObject> GetSummonerActiveGame(string encryptedSummonerId);
+		Task<JObject> GetFeaturedGames();
 	}
 }

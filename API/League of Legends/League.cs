@@ -9,50 +9,35 @@ namespace RiotNet.API.LeagueOfLegends
 	{
 		private readonly IRequestApi _request = new Request();
 
-		public async Task<JObject> Queue(AdvancedQueues league, Queue queue)
+		public async Task<JObject> GetQueue(AdvancedQueues league, Queue queue)
 		{
-			string baseUrl = _request.CreateApiUrl("league", "v4"),
-			challengerleaguesUrl = $"{league}/by-queue/";
-
-			string url = $"{baseUrl}{challengerleaguesUrl}{queue}";
-
-			HttpResponseMessage response = await _request.MakeRequest(url);
+			string baseUrl = _request.CreateApiUrl("league", "v4", "lol", Convert.ToString(league)!, "by-queue", Convert.ToString(queue)!);
+			HttpResponseMessage response = await _request.MakeRequest(baseUrl);
 
 			return await _request.GetResponseContent(response);
 		}
 
-		public async Task<JObject> Entries(string encryptedSummoner)
+		public async Task<JObject> GetEntries(string encryptedSummoner)
 		{
-			string baseUrl = _request.CreateApiUrl("league", "v4"),
-			entriesUrl = "entries/by-summoner/";
-
-			string url = $"{baseUrl}{entriesUrl}{encryptedSummoner}";
-
-			HttpResponseMessage response = await _request.MakeRequest(url);
+			string baseUrl = _request.CreateApiUrl("league", "v4", "lol", "entries", "by-summoner", encryptedSummoner);
+			HttpResponseMessage response = await _request.MakeRequest(baseUrl);
 
 			return await _request.GetResponseContent(response);
 		}
 
-		public async Task<JObject> Entries(Division division, Tier tier, Queue queue, int page = 1)
+		public async Task<JObject> GetEntries(Division division, Tier tier, Queue queue, int page = 1)
 		{
-			string baseUrl = _request.CreateApiUrl("league", "v4"),
-			entriesUrl = "entries/";
+			string baseUrl = _request.CreateApiUrl("league", "v4", "lol", "entries", Convert.ToString(queue)!, Convert.ToString(tier)!, Convert.ToString(division)!);
 
-			string url = $"{baseUrl}{entriesUrl}{queue}/{tier}/{division}?page={page}";
-
-			HttpResponseMessage response = await _request.MakeRequest(url);
+			HttpResponseMessage response = await _request.MakeRequest(baseUrl + $"?page={page}");
 
 			return await _request.GetResponseContent(response);
 		}
 
-		public async Task<JObject> Leagues(string leagueId)
+		public async Task<JObject> GetLeagues(string leagueId)
 		{
-			string baseUrl = _request.CreateApiUrl("league", "v4"),
-			leaguesUrl = "leagues/";
-
-			string url = $"{baseUrl}{leaguesUrl}{leagueId}";
-
-			HttpResponseMessage response = await _request.MakeRequest(url);
+			string baseUrl = _request.CreateApiUrl("league", "v4", "lol", "leagues", leagueId);
+			HttpResponseMessage response = await _request.MakeRequest(baseUrl);
 
 			return await _request.GetResponseContent(response);
 		}

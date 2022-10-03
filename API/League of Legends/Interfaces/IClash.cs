@@ -4,10 +4,10 @@ namespace RiotNet.API.LeagueOfLegends.Interfaces
 {
 	public interface IClash
 	{
-		Task<JObject> ClashPlayers(string summonerId);
-		Task<JObject> ClashTeams(string teamId);
-		Task<JObject> ClashTournaments();
-		Task<JObject> ClashTournamentTeam(string teamId);
-		Task<JObject> ClashTournamentById(string tournamentId);
+		Task<JObject> GetClashPlayers(string summonerId);
+		Task<JObject> GetClashTeams(string teamId);
+		Task<JObject> GetClashTournaments();
+		Task<JObject> GetClashTournamentTeam(string teamId);
+		Task<JObject> GetClashTournamentById(string tournamentId);
 	}
 }
