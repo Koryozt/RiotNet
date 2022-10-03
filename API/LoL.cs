@@ -58,49 +58,49 @@ namespace RiotNet.API
             return _challenges.GetChallengesPlayerProgress(puuid);
         }
 
-        public Task<JObject> ChampionsRotations()
+        public Task<JObject> GetChampionsRotations()
         {
-            return _rotations.ChampionsRotations();
+            return _rotations.GetChampionsRotations();
         }
 
-        public Task<JObject> ClashPlayers(string summonerId)
+        public Task<JObject> GetClashPlayers(string summonerId)
         {
-            return _clash.ClashPlayers(summonerId);
+            return _clash.GetClashPlayers(summonerId);
         }
 
-        public Task<JObject> ClashTeams(string teamId)
+        public Task<JObject> GetClashTeams(string teamId)
         {
-            return _clash.ClashTeams(teamId);
+            return _clash.GetClashTeams(teamId);
         }
 
-        public Task<JObject> ClashTournamentById(string tournamentId)
+        public Task<JObject> GetClashTournamentById(string tournamentId)
         {
-            return _clash.ClashTournamentById(tournamentId);
+            return _clash.GetClashTournamentById(tournamentId);
         }
 
-        public Task<JObject> ClashTournaments()
+        public Task<JObject> GetClashTournaments()
         {
-            return _clash.ClashTournaments();
+            return _clash.GetClashTournaments();
         }
 
-        public Task<JObject> ClashTournamentTeam(string teamId)
+        public Task<JObject> GetClashTournamentTeam(string teamId)
         {
-            return _clash.ClashTournamentTeam(teamId);
+            return _clash.GetClashTournamentTeam(teamId);
         }
 
-        public Task<JObject> Entries(string encryptedSummoner)
+        public Task<JObject> GetEntries(string encryptedSummoner)
         {
-            return _league.Entries(encryptedSummoner);
+            return _league.GetEntries(encryptedSummoner);
         }
 
-        public Task<JObject> Entries(Division division, Tier tier, Queue queue, int page = 1)
+        public Task<JObject> GetEntries(Division division, Tier tier, Queue queue, int page = 1)
         {
-            return _league.Entries(division, tier, queue, page);
+            return _league.GetEntries(division, tier, queue, page);
         }
 
-        public Task<JObject> FeaturedGames()
+        public Task<JObject> GetFeaturedGames()
         {
-            return _spectator.FeaturedGames();
+            return _spectator.GetFeaturedGames();
         }
 
         public Task<JObject> GetChampionMastery(string encrypterSummonerID)
@@ -158,19 +158,19 @@ namespace RiotNet.API
             return _summoner.GetSummonerBySummonerID(summonerID);
         }
 
-        public Task<JObject> Leagues(string leagueId)
+        public Task<JObject> GetLeagues(string leagueId)
         {
-            return _league.Leagues(leagueId);
+            return _league.GetLeagues(leagueId);
         }
 
-        public Task<JObject> Queue(AdvancedQueues league, Queue queue)
+        public Task<JObject> GetQueue(AdvancedQueues league, Queue queue)
         {
-            return _league.Queue(league, queue);
+            return _league.GetQueue(league, queue);
         }
 
-        public Task<JObject> SummonerActiveGame(string encryptedSummonerId)
+        public Task<JObject> GetSummonerActiveGame(string encryptedSummonerId)
         {
-            return _spectator.SummonerActiveGame(encryptedSummonerId);
+            return _spectator.GetSummonerActiveGame(encryptedSummonerId);
         }
     }
 }
