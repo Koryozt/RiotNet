@@ -38,6 +38,7 @@ This will setup everything and you can use every method inside the RiotNetAPI cl
 ```cs
     // Send me a friend request. ^^
     var summonerData = Riot.LeagueofLegends.GetSummonerByAccountName("Zette");
+    Console.WriteLine(summonerData);
 ```
 
 And you'll get something like this.
