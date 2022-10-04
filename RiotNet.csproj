@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataDragon\" />
     <Folder Include="Exceptions\" />
   </ItemGroup>
 

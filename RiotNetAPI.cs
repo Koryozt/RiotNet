@@ -2,6 +2,7 @@
 using RiotNet.API;
 using RiotNet.Miscellaneous;
 using RiotNet.API.Extra;
+using RiotNet.DataDragon;
 
 namespace RiotNet
 {
@@ -14,21 +15,23 @@ namespace RiotNet
         public readonly TFT TeamfightTactics = new TFT();
         public readonly Valorant Valorant = new Valorant();
         public readonly Status Status = new Status();
+        public readonly DDragon Ddragon = new DDragon();
         public readonly Account Account = new Account();
 
         public static LeaguePlatforms LoLPlatform { get; set; }
         public static RunaterraPlatforms LoRPlatform { get; set; }
         public static ValorantPlatforms ValorantPlatform { get; set; }
         public static RiotPlatforms AccountPlatform { get; set; }
+        public static Languages Langs { get; set; }
 
-        public RiotNetAPI(string apiKey, LeaguePlatforms lolPlatform, RunaterraPlatforms lorPlatform, ValorantPlatforms valorantPlatform,
-        RiotPlatforms accountPlatform)
+        public RiotNetAPI(string apiKey)
         {
             s_apikey = apiKey;
-            LoLPlatform = lolPlatform;
-            LoRPlatform = lorPlatform;
-            ValorantPlatform = valorantPlatform;
-            AccountPlatform = accountPlatform;
+            LoLPlatform = LeaguePlatforms.NA1;
+            LoRPlatform = RunaterraPlatforms.AMERICAS;
+            ValorantPlatform = ValorantPlatforms.NA;
+            AccountPlatform = RiotPlatforms.AMERICAS;
+            Langs = Languages.en_US;
         }
 
         public void GetSettings()

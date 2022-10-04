@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using RiotNet.DataDragon;
 using RiotNet.Miscellaneous;
 
 namespace RiotNet
@@ -7,10 +8,13 @@ namespace RiotNet
     {
         public static async Task Main(string[] args)
         {
-            RiotNetAPI API = new ("YOUR API KEY", LeaguePlatforms.LA1, RunaterraPlatforms.AMERICAS, ValorantPlatforms.LATAM, RiotPlatforms.AMERICAS);
+            RiotNetAPI API = new ("RGAPI-e43cbc7b-4a09-4764-8730-e1c7b41f618c");
+            RiotNetAPI.LoLPlatform = LeaguePlatforms.LA1;
 
-            JObject summoner = await API.LeagueOfLegends.GetSummonerByAccountName("Zette");
-            Console.WriteLine(summoner);
+            DDragonRequest request = new();
+
+            string v = await request.GetLatestVersion();
+            Console.WriteLine(v);
         }
     }
 }

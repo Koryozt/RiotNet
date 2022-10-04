@@ -6,20 +6,20 @@ namespace RiotNet.API.Connection
     public class Request : IRequestApi
     {
         private static string s_baseUrl = "https://.api.riotgames.com/";
-        private static HttpClient client = new HttpClient();
 
         public async Task<HttpResponseMessage> MakeRequest(string url)
         {
-            client.DefaultRequestHeaders.Add("X-Riot-Token", RiotNetAPI.s_apikey);
-            client.DefaultRequestHeaders.Add("Origin", "https://developer.riotgames.com");
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("X-Riot-Token", RiotNetAPI.s_apikey);
+                client.DefaultRequestHeaders.Add("Origin", "https://developer.riotgames.com");
 
-            Console.WriteLine($"Executing request to: {url}");
+                HttpResponseMessage response = await client.GetAsync(url);
 
-            HttpResponseMessage response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
 
-            response.EnsureSuccessStatusCode();
-
-            return response;
+                return response;
+            }
         }
 
         public async Task<JObject> GetResponseContent(HttpResponseMessage response)
