@@ -2,6 +2,7 @@
 
 - Implement ddragon API.
 - Create ToDictionary() and extra methods.
+- Save responses as Json or txt files.
 
 # What is RiotNet?
 RiotNet is an implementation of the Riot API in .NET written in C#. It's purpose is facilitate the usage of the API with asynchronous methods and many features that can be easily used. It also implements the DDragon (DataDragon) API to get certain data of the games, opening the posibilities of the application. Stop writting unnecesary code for many hours when RiotNet exists, with a few lines you can get anything that you want.
@@ -36,8 +37,10 @@ This will setup everything and you can use every method inside the RiotNetAPI cl
 
 ```cs
     // Send me a friend request. ^^
-    var summonerData = Riot.LeagueofLegends.GetSummonerByAccountName("League of Simps");
+    var summonerData = Riot.LeagueofLegends.GetSummonerByAccountName("Zette");
 ```
 
 And you'll get something like this.
-. . .
+- - -
+![image](https://user-images.githubusercontent.com/93677342/193716925-be431a34-eca9-4e77-bf7d-c5e2b428d778.png)
+
