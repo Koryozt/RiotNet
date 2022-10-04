@@ -1,7 +1,7 @@
 ﻿using RiotNet.Core.API;
-using RiotNet.Core.API.Extra;
 using RiotNet.API;
 using RiotNet.Miscellaneous;
+using RiotNet.API.Extra;
 
 namespace RiotNet
 {

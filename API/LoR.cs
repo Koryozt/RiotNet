@@ -25,9 +25,9 @@ namespace RiotNet.API
 			return _match.GetMatchesByPUUID(puuid);
 		}
 
-		public Task<JObject> Leaderboard()
+		public Task<JObject> GetLeaderboard()
 		{
-			return _ranked.Leaderboard();
+			return _ranked.GetLeaderboard();
 		}
 	}
 }

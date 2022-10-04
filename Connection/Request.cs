@@ -5,16 +5,17 @@ namespace RiotNet.API.Connection
 {
     public class Request : IRequestApi
     {
-        private readonly string _apiKey = RiotNetAPI.s_apikey;
+        private static string s_baseUrl = "https://.api.riotgames.com/";
+        private static HttpClient client = new HttpClient();
 
         public async Task<HttpResponseMessage> MakeRequest(string url)
         {
-            Configuration.client.DefaultRequestHeaders.Add("X-Riot-Token", _apiKey);
-            Configuration.client.DefaultRequestHeaders.Add("Origin", "https://developer.riotgames.com");
+            client.DefaultRequestHeaders.Add("X-Riot-Token", RiotNetAPI.s_apikey);
+            client.DefaultRequestHeaders.Add("Origin", "https://developer.riotgames.com");
 
             Console.WriteLine($"Executing request to: {url}");
 
-            HttpResponseMessage response = await Configuration.client.GetAsync(url);
+            HttpResponseMessage response = await client.GetAsync(url);
 
             response.EnsureSuccessStatusCode();
 
@@ -33,7 +34,7 @@ namespace RiotNet.API.Connection
         {
             try
             {
-                string baseUrl = Configuration.s_baseUrl, executeAgainst;
+                string baseUrl = s_baseUrl, executeAgainst;
                 StringBuilder sb = new StringBuilder(baseUrl);
 
                 switch (initial)
@@ -57,9 +58,10 @@ namespace RiotNet.API.Connection
                         break;
                 }
 
-                sb.AppendJoin('/', initial, coreEndpoint, version);
+                sb.AppendJoin('/', initial, coreEndpoint, version).Append('/');
 
                 if (endpointDetails is not null)
+                    
                     sb.AppendJoin('/', endpointDetails).Append('/');
                 
                 return sb.ToString();

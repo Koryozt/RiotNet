@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
-using RiotNet.Core.Miscellaneous;
 
-namespace RiotNet.Core.API.Interfaces
+namespace RiotNet.API.Interfaces
 {
     public interface IStatus
     {

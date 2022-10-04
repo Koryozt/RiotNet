@@ -36,12 +36,9 @@ namespace RiotNet.API.LeagueOfLegends
 		}
 		public async Task<JObject> GetChampionMasteryScores(string encrypterSummonerID)
 		{
-			string baseUrl = _request.CreateApiUrl("champion-mastery", "v4"),
-			championMasteryUrl = "champion-masteries/scores/by-summoner/";
+			string baseUrl = _request.CreateApiUrl("champion-mastery", "v4", "lol", "champion-masteries", "scores", "by-summoner", encrypterSummonerID);
 
-			string url = $"{baseUrl}{championMasteryUrl}/{encrypterSummonerID}/";
-
-			HttpResponseMessage response = await _request.MakeRequest(url);
+			HttpResponseMessage response = await _request.MakeRequest(baseUrl);
 
 			return await _request.GetResponseContent(response);
 		}

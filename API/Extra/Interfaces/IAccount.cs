@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RiotNet.Core.API.Interfaces
+namespace RiotNet.API.Interfaces
 {
 	public interface IAccount
 	{
