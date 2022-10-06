@@ -12,6 +12,5 @@ namespace RiotNet.DataDragon.Interfaces
 		Task<JObject> GetAllChampions();
 		Task<JObject> GetChampionByName(string championName);
 		Task<string> GetChampionImage(string championName);
-		Task<string> GetChampionSprite(string championName);
 	}
 }

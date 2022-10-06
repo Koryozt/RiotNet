@@ -47,6 +47,7 @@ namespace RiotNet.DataDragon
 
 		public async Task SaveImage(string url, string fileName)
 		{
+			Console.WriteLine(url);
 			HttpResponseMessage response = await _request.MakeRequest(url);
 			string path = Path.Combine(Directory.GetCurrentDirectory(), $"src{Path.DirectorySeparatorChar}{fileName}.png"); 
 
@@ -55,15 +56,6 @@ namespace RiotNet.DataDragon
 				await response.Content.CopyToAsync(fs);
 				Console.WriteLine("File created at: " + path);
 			}
-		}
-
-		public async Task<string> GetChampionSprite(string championName)
-		{
-			JObject champion = await GetChampionByName(championName);
-			JToken image = champion["image"]!["sprite"]!;
-			string url = await _request.CreateURL("img", "champion", image.ToString());
-
-			return url;
 		}
 
 		public async Task<JObject> GetItemByID(int id)

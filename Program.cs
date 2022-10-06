@@ -12,10 +12,9 @@ namespace RiotNet
             RiotNetAPI API = new RiotNetAPI("API KEY");
            
             DDragon dataDragon = new DDragon();
-            string champImgUrl = await dataDragon.GetChampionSprite("Yasuo");
-            JObject summonerData = await API.LeagueOfLegends.GetSummonerByAccountName("Yassuo");
+            string champImgUrl = await dataDragon.GetChampionImage("Zed");
 
-            await dataDragon.SaveImage(champImgUrl, "Yasuo");
+            await dataDragon.SaveImage(champImgUrl, "Zed");
         }
     }
 }
