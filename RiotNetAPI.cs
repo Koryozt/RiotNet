@@ -10,13 +10,13 @@ namespace RiotNet
     {
         public static string s_apikey = string.Empty;
 
-        public readonly LoL LeagueOfLegends = new LoL();
-        public readonly LoR LegendsOfRunaterra = new LoR();
-        public readonly TFT TeamfightTactics = new TFT();
-        public readonly Valorant Valorant = new Valorant();
-        public readonly Status Status = new Status();
-        public readonly DDragon Ddragon = new DDragon();
-        public readonly Account Account = new Account();
+        public readonly LoL LeagueOfLegends;
+        public readonly LoR LegendsOfRunaterra;
+        public readonly TFT TeamfightTactics;
+        public readonly Valorant Valorant;
+        public readonly Status Status;
+        public readonly DDragon Ddragon;
+        public readonly Account Account;
 
         public static LeaguePlatforms LoLPlatform { get; set; }
         public static RunaterraPlatforms LoRPlatform { get; set; }
@@ -32,7 +32,14 @@ namespace RiotNet
             ValorantPlatform = ValorantPlatforms.NA;
             AccountPlatform = RiotPlatforms.AMERICAS;
             Langs = Languages.en_US;
-        }
+			LeagueOfLegends = new LoL();
+			LegendsOfRunaterra = new LoR();
+			TeamfightTactics = new TFT();
+			Valorant = new Valorant();
+			Status = new Status();
+			Ddragon = new DDragon();
+			Account = new Account();
+		}
 
         public void GetSettings()
         {

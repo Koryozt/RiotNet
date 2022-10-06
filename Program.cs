@@ -9,11 +9,13 @@ namespace RiotNet
     {
         public static async Task Main(string[] args)
         {
-            RiotNetAPI API = new("API KEY");
-            RiotNetAPI.LoLPlatform = LeaguePlatforms.LA1;
+            RiotNetAPI API = new RiotNetAPI("API KEY");
+           
+            DDragon dataDragon = new DDragon();
+            string champImgUrl = await dataDragon.GetChampionSprite("Yasuo");
+            JObject summonerData = await API.LeagueOfLegends.GetSummonerByAccountName("Yassuo");
 
-            Request req = new();
-            await req.MakeRequest("https://la1.api.riotgames.com/lol/platform/v3/champion-rotations");
+            await dataDragon.SaveImage(champImgUrl, "Yasuo");
         }
     }
 }
