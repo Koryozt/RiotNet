@@ -12,7 +12,7 @@ namespace RiotNet.DataDragon
 	public class DDragonRequest : IDDragonRequest
 	{
 		private readonly string _versionsUrl = "https://ddragon.leagueoflegends.com/api/versions.json";
-		private readonly string _base = "http://ddragon.leagueoflegends.com/cdn";
+		private readonly string _base = "http://ddragon.leagueoflegends.com/cdn/";
 
 		public async Task<string> CreateURL(params string[] endpoints)
 		{
@@ -36,7 +36,6 @@ namespace RiotNet.DataDragon
 			using (HttpClient client = new HttpClient())
 			{
 				HttpResponseMessage response = await client.GetAsync(url);
-
 				response.EnsureSuccessStatusCode();
 				
 				return response;

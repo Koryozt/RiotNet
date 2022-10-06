@@ -11,6 +11,6 @@ namespace RiotNet.DataDragon.Interfaces
 	{
 		Task<JObject> GetAllItems();
 		Task<JObject> GetItemByID(int id);
-		Task<JObject> GetItemImage(int id);
+		Task<string> GetItemImage(int id);
 	}
 }

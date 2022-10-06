@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using RiotNet.Exceptions;
 using System.Text;
 
 namespace RiotNet.API.Connection
@@ -11,14 +12,22 @@ namespace RiotNet.API.Connection
         {
             using (HttpClient client = new HttpClient())
             {
-                client.DefaultRequestHeaders.Add("X-Riot-Token", RiotNetAPI.s_apikey);
-                client.DefaultRequestHeaders.Add("Origin", "https://developer.riotgames.com");
+                try
+                {
+                    client.DefaultRequestHeaders.Add("X-Riot-Token", RiotNetAPI.s_apikey);
+                    client.DefaultRequestHeaders.Add("Origin", "https://developer.riotgames.com");
 
-                HttpResponseMessage response = await client.GetAsync(url);
-
-                response.EnsureSuccessStatusCode();
-
-                return response;
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    
+                    ValidateStatusCode(response);
+                    
+                    return response;
+                }
+                catch (HttpMethodException Ex)
+                {
+                    Console.WriteLine(Ex.Message);
+                    return new HttpResponseMessage();
+                }
             }
         }
 
@@ -29,7 +38,7 @@ namespace RiotNet.API.Connection
             return json;
         }
 
-        #nullable disable
+#nullable disable
         public string CreateApiUrl(string coreEndpoint, string version, string initial, params string[] endpointDetails)
         {
             try
@@ -61,18 +70,26 @@ namespace RiotNet.API.Connection
                 sb.AppendJoin('/', initial, coreEndpoint, version).Append('/');
 
                 if (endpointDetails is not null)
-                    
+
                     sb.AppendJoin('/', endpointDetails).Append('/');
-                
+
                 return sb.ToString();
-                
+
             }
             catch (ArgumentNullException)
             {
                 throw;
             }
         }
-        #nullable enable
+#nullable enable
 
+
+        private static void ValidateStatusCode(HttpResponseMessage response)
+        {
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new HttpMethodException(((int)response.StatusCode));
+            }
+        }
     }
 }
