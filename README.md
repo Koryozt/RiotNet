@@ -1,6 +1,5 @@
 # TO DO:
 
-- Implement ddragon API.
 - Create ToDictionary() and extra methods.
 - Save responses as Json or txt files.
 - Implement Tournaments endpoints.
