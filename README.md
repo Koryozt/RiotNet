@@ -28,7 +28,11 @@ class Demo
     {
         // It's important to setup all platforms at once, but you can change it later if your code needs it.
         
-        RiotNetAPI Riot = new ("YOUR API KEY", LeaguePlatforms.LA1, RunaterraPlatforms.AMERICAS, ValorantPlatforms.LATAM, RiotPlatforms.AMERICAS);
+        RiotNetAPI Riot = new ("YOUR API KEY");
+
+        // Change the region acording to your preferences.
+
+        RiotNetAPI.LolPlatform = LeaguePlatforms.LA1;
     }
 }
 ```
@@ -45,3 +49,12 @@ And you'll get something like this.
 - - -
 ![image](https://user-images.githubusercontent.com/93677342/193716925-be431a34-eca9-4e77-bf7d-c5e2b428d778.png)
 
+- - - 
+And don't wait to use out **DataDragon Implementation** to acces all the resources availables, like the Yasuo icon, and it gets better now, you can save it if you want!
+
+```cs
+    DDragon dataDragon = new DDragon();
+    string champImgUrl = await dataDragon.GetChampionImage("Yasuo");
+
+    await dataDragon.SaveImage(champImgUrl, "Yasuo");
+```
