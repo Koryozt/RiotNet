@@ -1,7 +1,6 @@
 # TO DO:
 
 - Create ToDictionary() and extra methods.
-- Save responses as Json or txt files.
 - Implement Tournaments endpoints.
 
 # What is RiotNet?
