@@ -12,7 +12,7 @@ namespace RiotNet.DataDragon
 {
 	public class Item : IItem
 	{
-		private readonly DDragonRequest _request = new DDragonRequest();
+		private readonly DataDragonRequest _request = new DataDragonRequest();
 
 		public async Task<JObject> GetAllItems()
 		{

@@ -13,7 +13,7 @@ namespace RiotNet.DataDragon
 {
 	public class Others : IOthers
 	{
-		private readonly IDDragonRequest _request = new DDragonRequest();
+		private readonly IDDragonRequest _request = new DataDragonRequest();
 		public async Task<JObject> GetAllSummonerSpells()
 		{
 			string url = await _request.CreateURL("data", Convert.ToString(RiotNetAPI.Langs)!, "summoner.json");

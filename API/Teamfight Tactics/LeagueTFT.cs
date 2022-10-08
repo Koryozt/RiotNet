@@ -3,69 +3,60 @@ using RiotNet.API.Connection;
 using RiotNet.API.TeamfightTactics.Interfaces;
 using RiotNet.Connection.Interfaces;
 using RiotNet.Enums;
+using RiotNet.Miscellaneous;
 
 namespace RiotNet.API.TeamfightTactics
 {
     public class LeagueTFT : ILeagueTFT
-	{
-		private readonly IRequestApi _request = new Request();
+    {
+        private readonly IRequest _request = new Request();
 
-		public async Task<JObject> GetEntries(string summonerId)
-		{
-			string baseUrl = _request.CreateApiUrl("league", "v1", "tft"),
-			methodEndpoint = "entries/by-summoner";
+        public async Task<JObject> GetEntries(string summonerId)
+        {
+            string url = URL.RiotGamesRequestUrl("league", "v1", "tft", "entries", "by-summoner");
+            HttpResponseMessage response = await _request.MakeRequest(url);
 
-			string url = $"{baseUrl}{methodEndpoint}/{summonerId}";
+            return await _request.GetContent(response);
+        }
 
-			HttpResponseMessage response = await _request.MakeRequest(url);
+        public async Task<JObject> GetEntries(Tier tier, Division division)
+        {
+            string strTier = Convert.ToString(tier)!;
+            string strDivision = Convert.ToString(division)!;
+            string url = URL.RiotGamesRequestUrl("league", "v1", "tft", "entries", strTier, strDivision);
 
-			return await _request.GetResponseContent(response);
-		}
+            HttpResponseMessage response = await _request.MakeRequest(url);
 
-		public async Task<JObject> GetEntries(Tier tier, Division division)
-		{
-			string baseUrl = _request.CreateApiUrl("league", "v1", "tft"),
-			methodEndpoint = "entries";
+            return await _request.GetContent(response);
+        }
 
-			string url = $"{baseUrl}{methodEndpoint}/{tier}/{division}";
+        public async Task<JObject> GetLeague(AdvancedQueues queue)
+        {
+            string strQueue = Convert.ToString(queue)!;
+            string url = URL.RiotGamesRequestUrl("league", "v1", "tft", strQueue);
 
-			HttpResponseMessage response = await _request.MakeRequest(url);
+            HttpResponseMessage response = await _request.MakeRequest(url);
 
-			return await _request.GetResponseContent(response);
-		}
+            return await _request.GetContent(response);
+        }
 
-		public async Task<JObject> GetLeague(AdvancedQueues queue)
-		{
-			string baseUrl = _request.CreateApiUrl("league", "v1", "tft");
-			string url = $"{baseUrl}{queue}";
+        public async Task<JObject> GetLeague(string leagueId)
+        {
+            string url = URL.RiotGamesRequestUrl("league", "v1", "tft", "leagues", leagueId);
 
-			HttpResponseMessage response = await _request.MakeRequest(url);
+            HttpResponseMessage response = await _request.MakeRequest(url);
 
-			return await _request.GetResponseContent(response);
-		}
+            return await _request.GetContent(response);
+        }
 
-		public async Task<JObject> GetLeague(string leagueId)
-		{
-			string baseUrl = _request.CreateApiUrl("league", "v1", "tft"),
-			methodEndpoint = "leagues";
+        public async Task<JObject> GetTop(Queue queue)
+        {
+            string strQueue = Convert.ToString(queue)!;
+            string url = URL.RiotGamesRequestUrl("league", "v1", "tft", "rate-ladders", strQueue, "top");
 
-			string url = $"{baseUrl}{methodEndpoint}/{leagueId}";
+            HttpResponseMessage response = await _request.MakeRequest(url);
 
-			HttpResponseMessage response = await _request.MakeRequest(url);
-
-			return await _request.GetResponseContent(response);
-		}
-
-		public async Task<JObject> GetTop(Queue queue)
-		{
-			string baseUrl = _request.CreateApiUrl("league", "v1", "tft"),
-			methodEndpoint = "rate-ladders/";
-
-			string url = $"{baseUrl}{methodEndpoint}/{queue}/top";
-
-			HttpResponseMessage response = await _request.MakeRequest(url);
-
-			return await _request.GetResponseContent(response);
-		}
-	}
+            return await _request.GetContent(response);
+        }
+    }
 }

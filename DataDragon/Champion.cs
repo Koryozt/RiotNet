@@ -7,7 +7,7 @@ namespace RiotNet.DataDragon
 {
     public class Champion : IChampion
 	{
-		private readonly DDragonRequest _request = new();
+		private readonly DataDragonRequest _request = new();
 
 		public async Task<JObject> GetAllChampions()
 		{

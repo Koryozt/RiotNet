@@ -11,7 +11,7 @@ namespace RiotNet.Miscellaneous
 {
 	public class Media
 	{
-		private static readonly DDragonRequest _request = new();
+		private static readonly DataDragonRequest _request = new();
 		
 		public static async Task Image(string url, string fileName, string? path = null)
 		{
