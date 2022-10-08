@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.API.Connection;
 using RiotNet.API.ValorantAPI.Interfaces;
-using RiotNet.Miscellaneous;
+using RiotNet.Connection.Interfaces;
+using RiotNet.Enums;
 
 namespace RiotNet.API.ValorantAPI
 {
-	public class MatchVal : IMatchVal
+    public class MatchVal : IMatchVal
 	{
 		private readonly IRequestApi _request = new Request();
 

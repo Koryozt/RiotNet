@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
-using RiotNet.Miscellaneous;
+using RiotNet.Enums;
 
 namespace RiotNet.API.LeagueOfLegends.Interfaces
 {
-	public interface ILeague
+    public interface ILeague
 	{
 		Task<JObject> GetQueue(AdvancedQueues league, Queue queue);
 		Task<JObject> GetEntries(string encryptedSummoner);

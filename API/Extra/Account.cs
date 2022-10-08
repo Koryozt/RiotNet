@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.API.Connection;
 using RiotNet.API.Interfaces;
+using RiotNet.Connection.Interfaces;
 
 namespace RiotNet.API.Extra
 {

@@ -5,10 +5,28 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Title>RiotNet</Title>
+    <PackageId>riotnet-api-sample</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>KoryoZT</Authors>
+    <Description>A C# implementation of Riot Games and Data Dragon API to access them very easily.</Description>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/Zettte/RiotNet/tree/v1.0.0</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackAsTool>False</PackAsTool>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

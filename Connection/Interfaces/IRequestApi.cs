@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace RiotNet.API.Connection
+namespace RiotNet.Connection.Interfaces
 {
     public interface IRequestApi
     {

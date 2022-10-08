@@ -1,10 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.API.Connection;
 using RiotNet.API.LeagueOfLegends.Interfaces;
+using RiotNet.Connection.Interfaces;
 
 namespace RiotNet.API.TeamfightTactics
 {
-	public class SummonerTFT : ISummoner
+    public class SummonerTFT : ISummoner
 	{
 		private readonly IRequestApi _request = new Request();
 

@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.API.Connection;
 using RiotNet.API.LeagueOfLegends.Interfaces;
-using RiotNet.Miscellaneous;
+using RiotNet.Connection.Interfaces;
+using RiotNet.Enums;
 
 namespace RiotNet.API.LeagueOfLegends
 {
-	public class Challenges : IChallenges
+    public class Challenges : IChallenges
 	{
 		private readonly IRequestApi _request = new Request();
 

@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
-using RiotNet.Miscellaneous;
+using RiotNet.Enums;
 
 namespace RiotNet.API.TeamfightTactics.Interfaces
 {
-	public interface ILeagueTFT
+    public interface ILeagueTFT
 	{
 		Task<JObject> GetLeague(AdvancedQueues queue);
 		Task<JObject> GetLeague(string leagueId);

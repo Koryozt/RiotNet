@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RiotNet.Miscellaneous
+namespace RiotNet.Enums
 {
-	public enum Languages
-	{
-		cs_CZ,
+    public enum Languages
+    {
+        cs_CZ,
         el_GR,
         pl_PL,
         ro_RO,
@@ -36,5 +36,5 @@ namespace RiotNet.Miscellaneous
         zh_MY,
         zh_CN,
         zh_TW
-	}
+    }
 }

@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
-using RiotNet.Miscellaneous;
+using RiotNet.Enums;
 
 namespace RiotNet.API.LeagueOfLegends.Interfaces
 {
-	public interface IChallenges
+    public interface IChallenges
 	{
 		Task<JObject> GetChallengesConfig();
 		Task<JObject> GetChallengesConfig(long challengeId);

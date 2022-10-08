@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.API.LeagueOfLegends;
 using RiotNet.API.LeagueOfLegends.Interfaces;
-using RiotNet.Miscellaneous;
+using RiotNet.Enums;
 
 namespace RiotNet.API
 {

@@ -1,10 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.API.Connection;
 using RiotNet.API.ValorantAPI.Interfaces;
+using RiotNet.Connection.Interfaces;
 
 namespace RiotNet.API.ValorantAPI
 {
-	public class Content : IContent
+    public class Content : IContent
 	{
 		private readonly IRequestApi _request = new Request();
 

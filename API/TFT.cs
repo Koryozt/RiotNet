@@ -2,7 +2,7 @@
 using RiotNet.API.LeagueOfLegends.Interfaces;
 using RiotNet.API.TeamfightTactics;
 using RiotNet.API.TeamfightTactics.Interfaces;
-using RiotNet.Miscellaneous;
+using RiotNet.Enums;
 
 namespace RiotNet.API
 {

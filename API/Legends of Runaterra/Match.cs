@@ -1,10 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.API.Connection;
 using RiotNet.API.LegendsOfRunaterra.Interfaces;
+using RiotNet.Connection.Interfaces;
 
 namespace RiotNet.API.LegendsOfRunaterra
 {
-	public class Match : IMatchLoR
+    public class Match : IMatchLoR
 	{
 		private readonly IRequestApi _request = new Request();
 

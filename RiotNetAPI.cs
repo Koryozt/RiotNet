@@ -1,14 +1,15 @@
 ﻿using RiotNet.Core.API;
 using RiotNet.API;
-using RiotNet.Miscellaneous;
 using RiotNet.API.Extra;
 using RiotNet.DataDragon;
+using RiotNet.Enums;
 
 namespace RiotNet
 {
     public class RiotNetAPI
     {
-        public static string s_apikey = string.Empty;
+        public static string Apikey { get; set; } = string.Empty;
+        private static string _homeDirectory = string.Empty;
 
         public readonly LoL LeagueOfLegends;
         public readonly LoR LegendsOfRunaterra;
@@ -24,9 +25,16 @@ namespace RiotNet
         public static RiotPlatforms AccountPlatform { get; set; }
         public static Languages Langs { get; set; }
 
-        public RiotNetAPI(string apiKey)
+		public static string HomeDirectory
+		{
+			get { return _homeDirectory; }
+			set { _homeDirectory = value; }
+		}
+
+		public RiotNetAPI(string apiKey)
         {
-            s_apikey = apiKey;
+            Apikey = apiKey;
+            HomeDirectory = GetHomeDirectory();
             LoLPlatform = LeaguePlatforms.NA1;
             LoRPlatform = RunaterraPlatforms.AMERICAS;
             ValorantPlatform = ValorantPlatforms.NA;
@@ -44,11 +52,32 @@ namespace RiotNet
         public void GetSettings()
         {
             Console.WriteLine(
-                $"API KEY: {s_apikey}\n" +
+                $"API KEY: {Apikey}\n" +
                 $"ACCOUNT PLATFORM: {AccountPlatform}\n" +
                 $"LEAGUE OF LEGENDS | TFT PLATFORM: {LoLPlatform}\n" +
                 $"LEGENDS OF RUNATERRA PLATFORM: {LoRPlatform}\n" +
                 $"VALORANT PLATFORM: {ValorantPlatform}");
         }
-    }
+
+		private static string GetHomeDirectory()
+		{
+			string path = string.Empty;
+			if (Environment.OSVersion.Platform == PlatformID.Win32NT)
+			{
+				string homeDrive = Environment.GetEnvironmentVariable("HOMEDRIVE")!;
+                
+                if (!string.IsNullOrEmpty(homeDrive))
+                {
+                    string homePath = Environment.GetEnvironmentVariable("HOMEPATH")!;
+                    path = homeDrive + homePath;
+                }
+			}
+			if (Environment.OSVersion.Platform == PlatformID.Unix)
+			{
+				path = Environment.GetEnvironmentVariable("$HOME")!;
+			}
+
+			return path;
+		}
+	}
 }

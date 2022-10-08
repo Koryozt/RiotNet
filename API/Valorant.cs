@@ -1,11 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.API.ValorantAPI;
 using RiotNet.API.ValorantAPI.Interfaces;
-using RiotNet.Miscellaneous;
+using RiotNet.Enums;
 
 namespace RiotNet.Core.API
 {
-	public class Valorant : IMatchVal, IContent
+    public class Valorant : IMatchVal, IContent
 	{
 		private readonly IMatchVal _match;
 		private readonly IContent _content;

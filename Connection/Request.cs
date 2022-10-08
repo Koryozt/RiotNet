@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using RiotNet.Connection.Interfaces;
 using RiotNet.Exceptions;
 using System.Text;
 
@@ -14,7 +15,7 @@ namespace RiotNet.API.Connection
             {
                 try
                 {
-                    client.DefaultRequestHeaders.Add("X-Riot-Token", RiotNetAPI.s_apikey);
+                    client.DefaultRequestHeaders.Add("X-Riot-Token", RiotNetAPI.Apikey);
                     client.DefaultRequestHeaders.Add("Origin", "https://developer.riotgames.com");
 
                     HttpResponseMessage response = await client.GetAsync(url);

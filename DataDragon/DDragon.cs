@@ -9,69 +9,49 @@ using System.Threading.Tasks;
 
 namespace RiotNet.DataDragon
 {
-	public class DDragon : IChampion, IItem
+	public class DDragon : IChampion//, IItem
 	{
-		private readonly DDragonRequest _request = new();
-
-		public async Task<JObject> GetAllChampions()
+		private readonly IChampion _champion;
+		
+		public DDragon()
 		{
-			string url = await _request.CreateURL("data", Convert.ToString(RiotNetAPI.Langs)!, "champion.json");
-			HttpResponseMessage responseMessage = await _request.MakeRequest(url);
-
-			return await _request.GetContent(responseMessage);
+			_champion = new Champion();
 		}
 
-		public async Task<JObject> GetAllItems()
-		{
-			string url = await _request.CreateURL("data", Convert.ToString(RiotNetAPI.Langs)!, "item.json");
-			HttpResponseMessage responseMessage = await _request.MakeRequest(url);
 
-			return await _request.GetContent(responseMessage);
+		public Task<JObject> GetAllChampions()
+		{
+			return _champion.GetAllChampions();
 		}
 
-		public async Task<JObject> GetChampionByName(string championName)
+		public Task<JObject> GetChampionByName(string championName)
 		{
-			JObject champions = await GetAllChampions();
-			JToken token = champions["data"]![championName]!;
-			return token.ToObject<JObject>()!;
+			return _champion.GetChampionByName(championName);
 		}
 
-		public async Task<string> GetChampionImage(string championName)
+		public Task<string> GetChampionLoadingScreenAsset(string championName, int skin = 0)
 		{
-			JObject champion = await GetChampionByName(championName);
-			JToken image = champion["image"]!["full"]!;
-			string url = await _request.CreateURL("img", "champion", image.ToString());
-
-			return url;
+			return _champion.GetChampionLoadingScreenAsset(championName, skin);
 		}
 
-		public async Task SaveImage(string url, string fileName)
+		public Task<string> GetChampionPassiveAsset(string championName)
 		{
-			Console.WriteLine(url);
-			HttpResponseMessage response = await _request.MakeRequest(url);
-			string path = Path.Combine(Directory.GetCurrentDirectory(), $"src{Path.DirectorySeparatorChar}{fileName}.png"); 
-
-			using (FileStream fs = new FileStream(path, FileMode.Create))
-			{
-				await response.Content.CopyToAsync(fs);
-				Console.WriteLine("File created at: " + path);
-			}
+			return _champion.GetChampionPassiveAsset(championName);
 		}
 
-		public async Task<JObject> GetItemByID(int id)
+		public Task<string> GetChampionSplashAsset(string championName, int skin = 0)
 		{
-			JObject content = await GetAllItems();
-			JToken jToken = content["object"]!["data"]![id]!;
-			return jToken.ToObject<JObject>()!;
+			return _champion.GetChampionSplashAsset(championName, skin);
 		}
 
-		public async Task<string> GetItemImage(int id)
+		public Task<string> GetChampionSquareAsset(string championName)
 		{
-			JObject content = await GetItemByID(id);
-			JToken jToken = content["image"]!["full"]!;
-			string url = await _request.CreateURL("img", "item", jToken.ToString());
+			return _champion.GetChampionSquareAsset(championName);
+		}
 
-			return url;
+		public Task<string> GetAbilityAsset(string abilityName)
+		{
+			return _champion.GetAbilityAsset(abilityName);
 		}
 	}
 }

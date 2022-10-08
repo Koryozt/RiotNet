@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.API.Connection;
 using RiotNet.API.TeamfightTactics.Interfaces;
-using RiotNet.Miscellaneous;
+using RiotNet.Connection.Interfaces;
+using RiotNet.Enums;
 
 namespace RiotNet.API.TeamfightTactics
 {
-	public class LeagueTFT : ILeagueTFT
+    public class LeagueTFT : ILeagueTFT
 	{
 		private readonly IRequestApi _request = new Request();
 

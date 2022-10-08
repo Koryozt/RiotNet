@@ -1,10 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.API.Connection;
 using RiotNet.API.LeagueOfLegends.Interfaces;
+using RiotNet.Connection.Interfaces;
 
 namespace RiotNet.API.LeagueOfLegends
 {
-	public class Rotations : IRotations
+    public class Rotations : IRotations
 	{
 		private readonly IRequestApi _request = new Request();
 

@@ -1,10 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.API.Connection;
 using RiotNet.API.LeagueOfLegends.Interfaces;
+using RiotNet.Connection.Interfaces;
 
 namespace RiotNet.API.LeagueOfLegends
 {
-	public class Clash : IClash
+    public class Clash : IClash
 	{
 		private readonly IRequestApi _request = new Request();
 

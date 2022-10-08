@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.API.Connection;
 using RiotNet.DataDragon;
+using RiotNet.Enums;
 using RiotNet.Miscellaneous;
 
 namespace RiotNet
@@ -9,12 +10,11 @@ namespace RiotNet
     {
         public static async Task Main(string[] args)
         {
-            RiotNetAPI API = new RiotNetAPI("API KEY");
-           
-            DDragon dataDragon = new DDragon();
-            string champImgUrl = await dataDragon.GetChampionImage("Zed");
-
-            await dataDragon.SaveImage(champImgUrl, "Zed");
+            RiotNetAPI API = new RiotNetAPI("YOUR AI KEY");
+            RiotNetAPI.LoLPlatform = LeaguePlatforms.LA1;
+            Champion champ = new Champion();
+            JObject data = await champ.GetChampionByName("Aatrox");
+            await Media.Json(data.ToString(), "Aatrox", Environment.CurrentDirectory);
         }
     }
 }
