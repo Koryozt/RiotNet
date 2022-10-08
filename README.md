@@ -56,5 +56,5 @@ And don't wait to use out **DataDragon Implementation** to acces all the resourc
     DDragon dataDragon = new DDragon();
     string champImgUrl = await dataDragon.GetChampionImage("Yasuo");
 
-    await dataDragon.SaveImage(champImgUrl, "Yasuo");
+    await Media.Save(champImgUrl, "Yasuo.png");
 ```
