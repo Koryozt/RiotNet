@@ -10,7 +10,7 @@ namespace RiotNet
     {
         public static async Task Main(string[] args)
         {
-            RiotNetAPI API = new RiotNetAPI("YOUR AI KEY");
+            RiotNetAPI API = new RiotNetAPI("YOUR API KEY");
             RiotNetAPI.LoLPlatform = LeaguePlatforms.LA1;
             Champion champ = new Champion();
             JObject data = await champ.GetChampionByName("Aatrox");

@@ -10,8 +10,9 @@
 *.userosscache
 *.sln.docstates
 Keys.txt
-./Program.cs
-
+Program.cs
+riot.txt
+.gitattributes
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
