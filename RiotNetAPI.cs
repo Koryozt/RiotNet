@@ -3,6 +3,7 @@ using RiotNet.API;
 using RiotNet.API.Extra;
 using RiotNet.DataDragon;
 using RiotNet.Enums;
+using RiotNet.Miscellaneous;
 
 namespace RiotNet
 {
@@ -18,6 +19,7 @@ namespace RiotNet
         public readonly Status Status;
         public readonly DDragon Ddragon;
         public readonly Account Account;
+        public readonly Constants consts;
 
         public static LeaguePlatforms LoLPlatform { get; set; }
         public static RunaterraPlatforms LoRPlatform { get; set; }
@@ -47,6 +49,7 @@ namespace RiotNet
 			Status = new Status();
 			Ddragon = new DDragon();
 			Account = new Account();
+            consts = new Constants();
 		}
 
         public void GetSettings()

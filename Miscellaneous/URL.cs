@@ -15,6 +15,7 @@ namespace RiotNet.Miscellaneous
 		private readonly static string s_riotGamesApiUrlBase = "https://.api.riotgames.com/";
 		private readonly static string s_gameClientUrlBase = "​https://127.0.0.1:2999/";
 		private readonly static string s_versions = "https://ddragon.leagueoflegends.com/api/versions.json";
+		private readonly static string s_gameConstsUrlBase = "https://static.developer.riotgames.com/docs/";
 		#endregion
 
 		public static async Task<string> DataDragonRequestURL(params string[] endpoints)
@@ -76,6 +77,14 @@ namespace RiotNet.Miscellaneous
 			return sb.ToString();
 		}
 
+		public static string GameConstRequestUrl(params string[] endpoints)
+		{
+			StringBuilder sb = new StringBuilder(s_gameConstsUrlBase);
+			sb.AppendJoin('/', endpoints);
+
+			return sb.ToString();
+		}
+
 		private static async Task<string> GetLatestVersion()
 		{
 			using (HttpClient client = new HttpClient())
@@ -89,5 +98,6 @@ namespace RiotNet.Miscellaneous
 			}
 
 		}
+	
 	}
 }

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.DataDragon;
 using RiotNet.Enums;
+using RiotNet.Miscellaneous;
 
 namespace RiotNet
 {
@@ -10,8 +11,9 @@ namespace RiotNet
         {
             RiotNetAPI API = new RiotNetAPI("YOUR API KEY");
             RiotNetAPI.LoLPlatform = LeaguePlatforms.LA1;
-            Champion champ = new Champion();
-            JObject data = await champ.GetChampionByName("Aatrox");
+            JObject champions = await API.Ddragon.GetAllChampions();
+            string strchm = champions.ToString();
+            await ContentHandler.SaveAsJson(strchm, "champions");
 
         }
     }
