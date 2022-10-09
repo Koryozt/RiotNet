@@ -1,6 +1,7 @@
 # TO DO:
 
-- Create ToDictionary() and extra methods.
+- Implement GameClient API
+- Implement docs endpoints for LoR, TFT and Valorant.
 - Implement Tournaments endpoints.
 
 # What is RiotNet?
@@ -16,6 +17,8 @@ Simply do:
 git clone https://github.com/Zettte/RiotNet
 ```
 
+Or download the Source Code from the releases: https://github.com/Zettte/RiotNet/releases/tag/v1.1.0
+
 # How to use RiotNet?
 
 When you have already downloaded the package, go to your main program an paste the following code:
@@ -25,11 +28,9 @@ class Demo
 {
     public static async Task Main(string[] args)
     {
-        // It's important to setup all platforms at once, but you can change it later if your code needs it.
-        
         RiotNetAPI Riot = new ("YOUR API KEY");
 
-        // Change the region acording to your preferences.
+        // Change the region acording to your preferences. You can see the default platforms and regions in the RiotNetAPI.cs file.
 
         RiotNetAPI.LolPlatform = LeaguePlatforms.LA1;
     }
@@ -44,16 +45,34 @@ This will setup everything and you can use every method inside the RiotNetAPI cl
     Console.WriteLine(summonerData);
 ```
 
-And you'll get something like this.
-- - -
-![image](https://user-images.githubusercontent.com/93677342/193716925-be431a34-eca9-4e77-bf7d-c5e2b428d778.png)
+And you'll get something like this:
 
-- - - 
-And don't wait to use out **DataDragon Implementation** to acces all the resources availables, like the Yasuo icon, and it gets better now, you can save it if you want!
+```json
+Executing request to: https://la1.api.riotgames.com/lol/summoner/v4/summoners/by-name/Zette/
+{
+    "id": "Summoner ID",
+    "accountId": "Account ID",
+    "puuid": "Summoner PUUID",
+    "name": "Zette",
+    "profileIconId": 16,
+    "revisionDate": "revision Date",
+    "summonerLevel": 152
+}
+```
+And don't wait to use our **DataDragon Implementation** to acces all the resources availables, like all the Yasuo assets available. And it gets better now, you can save it on your computer!
 
 ```cs
-    DDragon dataDragon = new DDragon();
-    string champImgUrl = await dataDragon.GetChampionImage("Yasuo");
-
-    await Media.Save(champImgUrl, "Yasuo.png");
+    string champImageUrl = await Riot.DataDragon.GetChampionSplahSAsset("Yasuo");
+    await ContentHandler.SaveAsImage(champImageUrl, "Yasuo.jpg");
+    // And now you have a nice wallpaper.
 ```
+Wanting information about something related to another Riot's product? Say no more, we got you.
+
+```cs
+    var leaderboard = await API.LegendsOfRunaterra.GetLeaderboard();
+    var league = await API.TeamfightTactics.GetLeague(AdvancedQueues.challengerleagues);
+    var match = await API.Valorant.GetMatch("Any match ID");
+```
+
+What are you waiting to use RiotNet and create incredible things? The project is currently in progress and it's being updated almost daily, but don't wait anymore and start using RiotNet.
+
