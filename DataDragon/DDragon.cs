@@ -9,13 +9,17 @@ using System.Threading.Tasks;
 
 namespace RiotNet.DataDragon
 {
-	public class DDragon : IChampion//, IItem
+	public class DDragon : IChampion, IItem, IOthers
 	{
 		private readonly IChampion _champion;
+		private readonly IOthers _others;
+		private readonly IItem _item;
 		
 		public DDragon()
 		{
 			_champion = new Champion();
+			_others = new Others();
+			_item = new Item();
 		}
 
 
@@ -52,6 +56,51 @@ namespace RiotNet.DataDragon
 		public Task<string> GetAbilityAsset(string abilityName)
 		{
 			return _champion.GetAbilityAsset(abilityName);
+		}
+
+		public Task<JObject> GetAllItems()
+		{
+			return _item.GetAllItems();
+		}
+
+		public Task<JObject> GetItemByID(int id)
+		{
+			return _item.GetItemByID(id);
+		}
+
+		public Task<string> GetItemImage(int id)
+		{
+			return _item.GetItemImage(id);
+		}
+
+		public Task<JObject> GetAllSummonerSpells()
+		{
+			return _others.GetAllSummonerSpells();
+		}
+
+		public Task<string> GetSummonerSpellAsset(string summonerSpell)
+		{
+			return _others.GetSummonerSpellAsset(summonerSpell);
+		}
+
+		public Task<JObject> GetProfileIconsData()
+		{
+			return _others.GetProfileIconsData();
+		}
+
+		public Task<string> GetProfileIconAsset(int iconId)
+		{
+			return _others.GetProfileIconAsset(iconId);
+		}
+
+		public Task<string> GetMinimapAsset(int mapId)
+		{
+			return _others.GetMinimapAsset(mapId);
+		}
+
+		public Task<string> GetSpriteAsset(string sprite)
+		{
+			return _others.GetSpriteAsset(sprite);
 		}
 	}
 }

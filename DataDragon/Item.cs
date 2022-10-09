@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.API.Connection;
 using RiotNet.Connection;
+using RiotNet.Connection.Interfaces;
 using RiotNet.DataDragon.Interfaces;
+using RiotNet.Miscellaneous;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +14,11 @@ namespace RiotNet.DataDragon
 {
 	public class Item : IItem
 	{
-		private readonly DataDragonRequest _request = new DataDragonRequest();
+		private readonly IRequest _request = new Request();
 
 		public async Task<JObject> GetAllItems()
 		{
-			string url = await _request.CreateURL("data", Convert.ToString(RiotNetAPI.Langs)!, "item.json");
+			string url = await URL.DataDragonRequestURL("data", Convert.ToString(RiotNetAPI.Langs)!, "item.json");
 			HttpResponseMessage responseMessage = await _request.MakeRequest(url);
 
 			return await _request.GetContent(responseMessage);
@@ -31,7 +33,7 @@ namespace RiotNet.DataDragon
 
 		public async Task<string> GetItemImage(int id)
 		{
-			string url = await _request.CreateURL("img", "item", $"{id}.png");
+			string url = await URL.DataDragonRequestURL("img", "item", $"{id}.png");
 			return url;
 		}
 	}

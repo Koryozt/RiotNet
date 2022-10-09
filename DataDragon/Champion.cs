@@ -1,17 +1,19 @@
 ﻿using Newtonsoft.Json.Linq;
+using RiotNet.API.Connection;
 using RiotNet.Connection;
+using RiotNet.Connection.Interfaces;
 using RiotNet.DataDragon.Interfaces;
-
+using RiotNet.Miscellaneous;
 
 namespace RiotNet.DataDragon
 {
     public class Champion : IChampion
 	{
-		private readonly DataDragonRequest _request = new();
+		private readonly IRequest _request = new Request();
 
 		public async Task<JObject> GetAllChampions()
 		{
-			string url = await _request.CreateURL("data", Convert.ToString(RiotNetAPI.Langs)!, "champion.json");
+			string url = await URL.DataDragonRequestURL("data", Convert.ToString(RiotNetAPI.Langs)!, "champion.json");
 			HttpResponseMessage responseMessage = await _request.MakeRequest(url);
 
 			return await _request.GetContent(responseMessage);
@@ -22,7 +24,7 @@ namespace RiotNet.DataDragon
 			if (!CheckParameter(championName))
 				return null!;
 
-			string url = await _request.CreateURL("data", Convert.ToString(RiotNetAPI.Langs)!, "champion", $"{championName}.json");
+			string url = await URL.DataDragonRequestURL("data", Convert.ToString(RiotNetAPI.Langs)!, "champion", $"{championName}.json");
 			HttpResponseMessage responseMessage = await _request.MakeRequest(url);
 
 			return await _request.GetContent(responseMessage);
@@ -35,7 +37,7 @@ namespace RiotNet.DataDragon
 				return string.Empty;
 			
 			string name = $"{championName}.png";
-			string url = await _request.CreateURL("img", "champion", name);
+			string url = await URL.DataDragonRequestURL("img", "champion", name);
 
 
 			return url;
@@ -46,7 +48,7 @@ namespace RiotNet.DataDragon
 			if (!CheckParameter(championName, skin))
 				return string.Empty;
 
-			string url = await _request.CreateURL("img", "champion", "loading", $"{championName}_{skin}.jpg");
+			string url = await URL.DataDragonRequestURL("img", "champion", "loading", $"{championName}_{skin}.jpg");
 			return url;
 		}
 
@@ -56,7 +58,7 @@ namespace RiotNet.DataDragon
 				return string.Empty;
 			
 
-			string url = await _request.CreateURL("img", "champion","splash", $"{championName}_{skin}.jpg");
+			string url = await URL.DataDragonRequestURL("img", "champion","splash", $"{championName}_{skin}.jpg");
 			return url;
 		}
 
@@ -66,7 +68,7 @@ namespace RiotNet.DataDragon
 				return string.Empty;
 			
 
-			string url = await _request.CreateURL("img", "passive", $"{championName}_P.png");
+			string url = await URL.DataDragonRequestURL("img", "passive", $"{championName}_P.png");
 			return url;
 		}
 
@@ -76,7 +78,7 @@ namespace RiotNet.DataDragon
 				return string.Empty;
 			
 
-			string url = await _request.CreateURL("img", "spell", $"{abilityName}.png");
+			string url = await URL.DataDragonRequestURL("img", "spell", $"{abilityName}.png");
 			return url;
 		}
 
