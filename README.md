@@ -31,7 +31,7 @@ class Demo
 {
     public static async Task Main(string[] args)
     {
-        RiotNetAPI Riot = new ("YOUR API KEY");
+        RiotNetAPI API = new RiotnetAPI("YOUR API KEY", "Here you will put the location of the riotgames.pem file. If you don't have it don't worry, it's not necessarry if you will not use it");
 
         // Change the region acording to your preferences. You can see the default platforms and regions in the RiotNetAPI.cs file.
 
