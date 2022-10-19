@@ -65,7 +65,7 @@ Executing request to: https://la1.api.riotgames.com/lol/summoner/v4/summoners/by
 And don't wait to use our **DataDragon Implementation** to acces all the resources availables, like all the Yasuo assets available. And it gets better now, you can save it on your computer!
 
 ```cs
-    string champImageUrl = await Riot.DataDragon.GetChampionSplahSAsset("Yasuo");
+    string champImageUrl = await API.DataDragon.GetChampionSplahSAsset("Yasuo");
     await ContentHandler.SaveAsImage(champImageUrl, "Yasuo.jpg");
     // And now you have a nice wallpaper.
 ```
