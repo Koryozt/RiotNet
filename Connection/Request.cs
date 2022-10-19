@@ -1,6 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.Connection.Interfaces;
 using RiotNet.Exceptions;
+using RiotNet.Miscellaneous;
+using System.Net.Http;
+using System.Net.Sockets;
 using System.Text;
 
 namespace RiotNet.API.Connection
@@ -18,42 +21,63 @@ namespace RiotNet.API.Connection
 
                     HttpResponseMessage response = await client.GetAsync(url);
                     
-                    ValidateStatusCode(response);
+                    Validation.ValidateStatusCode(response);
                     
                     return response;
                 }
-                catch (HttpMethodException Ex)
+                catch (HttpMethodException)
                 {
-                    Console.WriteLine(Ex.Message);
-                    return new HttpResponseMessage();
+                    throw;
                 }
             }
         }
 
-		public async Task<HttpResponseMessage> MakeRequestWithoutHeaders(string url)
-		{
-			using (HttpClient client = new HttpClient())
-			{
-				HttpResponseMessage response = await client.GetAsync(url);
-				response.EnsureSuccessStatusCode();
+        public async Task<HttpResponseMessage> MakeRequestWithoutHeaders(string url)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    
+                    Validation.ValidateStatusCode(response);
 
-				return response;
-			}
-		}
+                    return response;
+                }
+                catch (HttpMethodException)
+                {
+                    throw;
+                }
+            }
+        }
 
-		public async Task<JObject> GetContent(HttpResponseMessage response)
+
+        public async Task<HttpResponseMessage> MakeGameRequest(string url)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                try
+                {
+                    Validation.ValidatePortOpened();
+                    Validation.ValidateServerCertificate();
+
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    response.EnsureSuccessStatusCode();
+
+                    return response;
+                }
+                catch (GameNotStartedException)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public async Task<JObject> GetContent(HttpResponseMessage response)
         {
             string strJson = await response.Content.ReadAsStringAsync();
             JObject json = JObject.Parse(strJson);
             return json;
-        }
-
-        private static void ValidateStatusCode(HttpResponseMessage response)
-        {
-            if (!response.IsSuccessStatusCode)
-            {
-                throw new HttpMethodException(((int)response.StatusCode));
-            }
         }
     }
 }

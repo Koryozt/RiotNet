@@ -11,6 +11,7 @@ namespace RiotNet.Connection.Interfaces
 	{
 		Task<HttpResponseMessage> MakeRequest(string url);
 		Task<HttpResponseMessage> MakeRequestWithoutHeaders(string url);
+		Task<HttpResponseMessage> MakeGameRequest(string url);
 		Task<JObject> GetContent(HttpResponseMessage response);
 	}
 }

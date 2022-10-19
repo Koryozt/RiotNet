@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using RiotNet.DataDragon;
 using RiotNet.Enums;
+using RiotNet.GameClient.Methods;
 using RiotNet.Miscellaneous;
 
 namespace RiotNet
@@ -9,12 +10,8 @@ namespace RiotNet
     {
         public static async Task Main(string[] args)
         {
-            RiotNetAPI API = new RiotNetAPI("YOUR API KEY");
-            RiotNetAPI.LoLPlatform = LeaguePlatforms.LA1;
-            JObject champions = await API.Ddragon.GetAllChampions();
-            string strchm = champions.ToString();
-            await ContentHandler.SaveAsJson(strchm, "champions");
-
+            string certpath = Path.Combine(RiotNetAPI.HomeDirectory, "Downloads", "riotgames.pem");
+			RiotNetAPI API = new RiotNetAPI("YOUR API KEY", certpath);
         }
     }
 }

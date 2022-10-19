@@ -21,6 +21,7 @@ namespace RiotNet.Miscellaneous
 		public static async Task<string> DataDragonRequestURL(params string[] endpoints)
 		{
 			string version = await GetLatestVersion();
+
 			StringBuilder sb = new StringBuilder(s_ddragonUrlBase);
 			sb.Append(version).Append('/');
 			sb.AppendJoin('/', endpoints);
@@ -69,12 +70,17 @@ namespace RiotNet.Miscellaneous
 			}
 		}
 
-		public static string GameClientRequestUrl(params string[] endpoints)
+		public static string GameClientRequestUrl(bool requiresSummoner = false, params string[] endpoints)
 		{
 			StringBuilder sb = new StringBuilder(s_gameClientUrlBase);
 			sb.AppendJoin('/', endpoints);
+			
+			if (requiresSummoner)
+			{
+				sb.Append("?summonerName=");
+			}
 
-			return sb.ToString();
+			return sb.ToString().Remove(0, 1);
 		}
 
 		public static string GameConstRequestUrl(params string[] endpoints)
@@ -93,11 +99,10 @@ namespace RiotNet.Miscellaneous
 				response.EnsureSuccessStatusCode();
 
 				string str = await response.Content.ReadAsStringAsync();
-
-				return JsonConvert.DeserializeObject<string[]>(str)!.First();
+				string obj =  JsonConvert.DeserializeObject<string[]>(str)!.First();
+				
+				return obj;
 			}
-
 		}
-	
 	}
 }

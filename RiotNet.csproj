@@ -7,19 +7,40 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Title>RiotNet</Title>
-    <PackageId>riotnet-api-sample</PackageId>
-    <Version>1.0.0</Version>
+    <PackageId>RiotNetAPI</PackageId>
+    <Version>1.2.0</Version>
     <Authors>KoryoZT</Authors>
-    <Description>A C# implementation of Riot Games and Data Dragon API to access them very easily.</Description>
+    <Description>A C# implementation of the whole Riot Games API to access them very easily.
+Including Data Dragon, League Client, and GameClient API.</Description>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/Zettte/RiotNet/tree/v1.0.0</RepositoryUrl>
+    <RepositoryUrl>https://github.com/Zettte/RiotNet/tree/v1.2.0</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackAsTool>False</PackAsTool>
+    <PackageIcon>RIOTNETLOGO.png</PackageIcon>
+    <PackageTags>api; riot; riotgames; games; dotnet; net6; packages; library; riotapi; riotgamesapi;</PackageTags>
+    <NeutralLanguage>en-001</NeutralLanguage>
+    <AssemblyVersion>1.2.0</AssemblyVersion>
+    <FileVersion>1.2.0</FileVersion>
+    <IncludeSymbols>False</IncludeSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes>Implemented the LiveClientData endpoints and the Replay API endpoints.
+Also fixed some methods bugs and modified ContentHandler class.</PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="riot.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\Users\Administrador\Pictures\RIOTNETLOGO.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
