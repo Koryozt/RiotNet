@@ -18,7 +18,7 @@ git clone https://github.com/Zettte/RiotNet
 ```
 Nuget:
 ```
-dotnet add package RiotNet.Api.09.10.2022.Sample --version 1.1.0
+dotnet add package RiotNetAPI --version 1.2.0
 ```
 Or download the Source Code from the releases: https://github.com/Zettte/RiotNet/releases/tag/v1.1.0
 
