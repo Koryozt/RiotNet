@@ -86,7 +86,7 @@ namespace RiotNet.Miscellaneous
 			var propertyValuePairs = json.ToObject<Dictionary<string, object>>();
 			ProcessJObjectProperties(propertyValuePairs!);
 			ProcessJArrayProperties(propertyValuePairs!);
-			return propertyValuePairs;
+			return propertyValuePairs!;
 		}
 
 		private static void ProcessJObjectProperties(IDictionary<string, object> propertyValuePairs)

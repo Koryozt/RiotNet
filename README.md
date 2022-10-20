@@ -1,6 +1,5 @@
 # TO DO:
 
-- Implement GameClient API
 - Implement docs endpoints for LoR, TFT and Valorant.
 - Implement Tournaments endpoints.
 

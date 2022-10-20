@@ -16,6 +16,7 @@ namespace RiotNet.Miscellaneous
 		private readonly static string s_gameClientUrlBase = "​https://127.0.0.1:2999/";
 		private readonly static string s_versions = "https://ddragon.leagueoflegends.com/api/versions.json";
 		private readonly static string s_gameConstsUrlBase = "https://static.developer.riotgames.com/docs/";
+		private readonly static string s_gameclientApiLoR = $"http://127.0.0.1:{RiotNetAPI.LeguendsOfRunaterraPort}/";
 		#endregion
 
 		public static async Task<string> DataDragonRequestURL(params string[] endpoints)
@@ -90,6 +91,15 @@ namespace RiotNet.Miscellaneous
 
 			return sb.ToString();
 		}
+
+		public static string GameClientRequestUrlLoR(string endpoint)
+		{
+			StringBuilder sb = new StringBuilder(s_gameclientApiLoR);
+			sb.Append(endpoint);
+
+			return sb.ToString();
+		}
+
 
 		private static async Task<string> GetLatestVersion()
 		{

@@ -11,11 +11,12 @@ namespace RiotNet
     public class RiotNetAPI
     {
         public static string Apikey { get; set; } = string.Empty;
-        private static string _homeDirectory = string.Empty;
-        private static string _rootDirectory = string.Empty;
-        private static string _certificateFilePath = string.Empty;
+		public static string HomeDirectory { get; set; } = string.Empty;
+		public static string RootDirectory { get; set; } = string.Empty;
+		public static string CertificateFilePath { get; set; } = string.Empty;
+		public static long LeguendsOfRunaterraPort { get; set; } = 21337;
 
-        public readonly LoL LeagueOfLegends;
+		public readonly LoL LeagueOfLegends;
         public readonly LoR LegendsOfRunaterra;
         public readonly TFT TeamfightTactics;
         public readonly Valorant Valorant;
@@ -29,43 +30,7 @@ namespace RiotNet
         public static RunaterraPlatforms LoRPlatform { get; set; }
         public static ValorantPlatforms ValorantPlatform { get; set; }
         public static RiotPlatforms AccountPlatform { get; set; }
-        public static Languages Langs { get; set; }
-
-		public static string HomeDirectory
-		{
-			get 
-            { 
-                return _homeDirectory; 
-            }
-			set
-            { 
-                _homeDirectory = value; 
-            }
-		}
-
-        public static string RootDirectory 
-        {
-            get 
-            { 
-                return _rootDirectory; 
-            } 
-            set 
-            {
-                _rootDirectory = value; 
-            }
-        }
-
-		public static string CertificateFilePath
-		{
-			get
-			{
-				return _certificateFilePath;
-			}
-			set
-			{
-				_certificateFilePath = value;
-			}
-		}
+        public static Languages Lang { get; set; }
 
         public RiotNetAPI(string apiKey, string? certificateFilePath = null)
         {
@@ -77,7 +42,7 @@ namespace RiotNet
             LoRPlatform = RunaterraPlatforms.AMERICAS;
             ValorantPlatform = ValorantPlatforms.NA;
             AccountPlatform = RiotPlatforms.AMERICAS;
-            Langs = Languages.en_US;
+            Lang = Languages.en_US;
 			LeagueOfLegends = new LoL();
 			LegendsOfRunaterra = new LoR();
 			TeamfightTactics = new TFT();
@@ -88,16 +53,6 @@ namespace RiotNet
             GameConstants = new Constants();
             LiveClient = new LiveClientData();
 		}
-
-        public void GetSettings()
-        {
-            Console.WriteLine(
-                $"API KEY: {Apikey}\n" +
-                $"ACCOUNT PLATFORM: {AccountPlatform}\n" +
-                $"LEAGUE OF LEGENDS | TFT PLATFORM: {LoLPlatform}\n" +
-                $"LEGENDS OF RUNATERRA PLATFORM: {LoRPlatform}\n" +
-                $"VALORANT PLATFORM: {ValorantPlatform}");
-        }
 
 		private static string GetHomeDirectory()
 		{
